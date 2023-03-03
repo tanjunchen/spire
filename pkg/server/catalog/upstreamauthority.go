@@ -9,6 +9,7 @@ import (
 	"github.com/spiffe/spire/pkg/server/plugin/upstreamauthority/disk"
 	"github.com/spiffe/spire/pkg/server/plugin/upstreamauthority/gcpcas"
 	spireplugin "github.com/spiffe/spire/pkg/server/plugin/upstreamauthority/spire"
+	"github.com/spiffe/spire/pkg/server/plugin/upstreamauthority/tanjunchen"
 	"github.com/spiffe/spire/pkg/server/plugin/upstreamauthority/vault"
 )
 
@@ -39,6 +40,8 @@ func (repo *upstreamAuthorityRepository) BuiltIns() []catalog.BuiltIn {
 		spireplugin.BuiltIn(),
 		disk.BuiltIn(),
 		certmanager.BuiltIn(),
+		tanjunchen.BuiltIn(),
+		// todo 添加内置 CA
 	}
 }
 
