@@ -1,0 +1,14 @@
+FROM alpine AS spire-base
+ARG ARCH
+ARG OS
+WORKDIR /opt/spire
+RUN apk --no-cache --update add build-base git mercurial
+RUN apk --no-cache --update add dumb-init
+RUN apk --no-cache --update add ca-certificates
+RUN mkdir -p /opt/spire/bin
+CMD []
+
+# SPIRE Server
+FROM spire-base AS spire-agent
+COPY output/bin/${OS}/${ARCH}/spire-agent bin/spire-agent
+ENTRYPOINT ["/usr/bin/dumb-init", "/opt/spire/bin/spire-agent", "run"]
